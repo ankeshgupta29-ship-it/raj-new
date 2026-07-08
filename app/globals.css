@@ -1,38 +1,118 @@
-.text-navy { color: #7B5046; }
-.bg-navy { background-color: #7B5046; }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-.text-gold { color: #A06D5F; }
-.bg-gold { background-color: #A06D5F; }
+@layer base {
+  :root {
+    /* Base Colors */
+    --background: 30 40% 98%;       /* Warm Off-white */
+    --foreground: 13 20% 15%;       /* Dark Brown */
 
-.border-gold { border-color: #A06D5F; }
-.ring-gold { --tw-ring-color: #A06D5F; }
+    /* Cards & Popovers */
+    --card: 0 0% 100%;
+    --card-foreground: 13 20% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 13 20% 15%;
 
-.gradient-navy {
-  background: linear-gradient(
-    135deg,
-    #7B5046 0%,
-    #8F6156 60%,
-    #6A433A 100%
-  );
+    /* Brand Color (#7B5046) */
+    --primary: 13 28% 38%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary */
+    --secondary: 30 25% 95%;        /* Warm Cream */
+    --secondary-foreground: 13 28% 20%;
+
+    /* Muted */
+    --muted: 30 15% 95%;
+    --muted-foreground: 13 12% 45%;
+
+    /* Accent */
+    --accent: 13 35% 30%;
+    --accent-foreground: 0 0% 100%;
+
+    /* System */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 15% 88%;
+    --input: 30 15% 88%;
+    --ring: 13 28% 38%;
+
+    --radius: 0.5rem;
+  }
 }
 
-.gradient-gold {
-  background: linear-gradient(
-    135deg,
-    #7B5046 0%,
-    #A06D5F 50%,
-    #5E3C35 100%
-  );
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-inter), system-ui, sans-serif;
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-poppins), system-ui, sans-serif;
+    letter-spacing: -0.02em;
+  }
 }
 
-.text-gradient-gold {
-  background: linear-gradient(
-    135deg,
-    #7B5046 0%,
-    #A06D5F 50%,
-    #5E3C35 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+@layer utilities {
+  /* Brand Utilities */
+  .text-brand { color: #7B5046; }
+  .bg-brand { background-color: #7B5046; }
+  .border-brand { border-color: #7B5046; }
+  .ring-brand { --tw-ring-color: #7B5046; }
+
+  /* Existing Utilities */
+  .hide-scrollbar::-webkit-scrollbar { display: none; }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .marquee-track {
+    animation: marquee 40s linear infinite;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .ken-burns {
+    animation: kenburns 20s ease-in-out infinite alternate;
+  }
+
+  @keyframes kenburns {
+    from { transform: scale(1) translate(0, 0); }
+    to { transform: scale(1.08) translate(-1%, -1%); }
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(123, 80, 70, 0.15),
+      transparent
+    );
+    background-size: 200% 100%;
+    animation: shimmer 3s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
 }
